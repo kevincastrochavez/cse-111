@@ -1,4 +1,4 @@
-from sentences import get_determiner, get_noun, get_verb
+from sentences import get_determiner, get_noun, get_verb, get_preposition, get_prepositional_phrase
 import pytest
 
 def test_get_determiner():
@@ -92,6 +92,73 @@ def test_get_verb():
         # is one of the words in the future_verbs list.
         assert word in future_verbs
 
+def test_get_preposition():
+    # Test the singular prepositions.
+    prepositions = ["about", "above", "across", "after", "along",
+        "around", "at", "before", "behind", "below",
+        "beyond", "by", "despite", "except", "for",
+        "from", "in", "into", "near", "of",
+        "off", "on", "onto", "out", "over",
+        "past", "to", "under", "with", "without"]
         
+    # This loop will repeat the statements inside it 6 times.
+    for _ in range(6):
+        word = get_preposition()
 
+        # Verify that the word returned from get_preposition is
+        # one of the words in the prepositions list.
+        assert word in prepositions  
+        
+def test_get_prepositional_phrase():
+    prepositions = ["about", "above", "across", "after", "along",
+        "around", "at", "before", "behind", "below",
+        "beyond", "by", "despite", "except", "for",
+        "from", "in", "into", "near", "of",
+        "off", "on", "onto", "out", "over",
+        "past", "to", "under", "with", "without"]
+
+    for _ in range(6):
+        preposition = get_preposition()
+        determiner = get_determiner(1)
+        noun = get_noun(1)
+
+        phrase = f"{preposition} {determiner} {noun}"
+
+        phrase_list = phrase.split(' ')
+        assert len(phrase_list) == 3
+    
+    for _ in range(6):
+        preposition = get_preposition()
+        determiner = get_determiner(2)
+        noun = get_noun(2)
+
+        phrase = f"{preposition} {determiner} {noun}"
+
+        phrase_list = phrase.split(' ')
+        assert len(phrase_list) == 3
+    
+    for _ in range(6):
+        determiners = ["the", "one"]
+        nouns = ["adult", "bird", "boy", "car", "cat",
+        "child", "dog", "girl", "man", "woman"]
+
+        phrase = get_prepositional_phrase(1)
+        phrase_list = phrase.split(' ')
+
+        assert phrase_list[0] in prepositions
+        assert phrase_list[1] in determiners
+        assert phrase_list[2] in nouns
+
+    for _ in range(6):
+        determiners = ["some", "many"]
+        nouns = ["adults", "birds", "boys", "cars", "cats",
+        "children", "dogs", "girls", "men", "women"]
+
+        phrase = get_prepositional_phrase(2)
+        phrase_list = phrase.split(' ')
+
+        assert phrase_list[0] in prepositions
+        assert phrase_list[1] in determiners
+        assert phrase_list[2] in nouns
+   
 pytest.main(["-v", "--tb=line", "-rN", "test_sentences.py"])

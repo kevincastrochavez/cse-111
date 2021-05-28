@@ -11,6 +11,15 @@ def main():
 
         print(f"{determiner} {noun} {verb}")
 
+    for i in range(6):
+        determiner = get_determiner(quantity[i])
+        noun = get_noun(quantity[i])
+        verb = get_verb(quantity[i], tense[i])
+        preposition = get_preposition()
+        prepositional_phrase = get_prepositional_phrase(quantity[i])
+
+        print(f"{determiner} {noun} {verb} {preposition} {prepositional_phrase}")
+
 def get_determiner(quantity):
     """Return a randomly chosen determiner. A determiner is a word
     like "the", "a", "one", "two", "some", "many". If quantity == 1,
@@ -30,6 +39,7 @@ def get_determiner(quantity):
 
     # Randomly choose and return a determiner.
     word = random.choice(words)
+
     return word
 
 def get_noun(quantity):
@@ -98,7 +108,49 @@ def get_verb(quantity, tense):
         words = ["will drink", "will eat", "will grow", "will laugh",
         "will think", "will run", "will sleep", "will talk",
         "will walk", "will write"]
+        
     word = random.choice(words)
     return word
+
+def get_preposition():
+    """Return a randomly chosen preposition
+    from this list of prepositions:
+        "about", "above", "across", "after", "along",
+        "around", "at", "before", "behind", "below",
+        "beyond", "by", "despite", "except", "for",
+        "from", "in", "into", "near", "of",
+        "off", "on", "onto", "out", "over",
+        "past", "to", "under", "with", "without"
+
+    Return: a randomly chosen preposition.
+    """
+
+    words = ["about", "above", "across", "after", "along",
+        "around", "at", "before", "behind", "below",
+        "beyond", "by", "despite", "except", "for",
+        "from", "in", "into", "near", "of",
+        "off", "on", "onto", "out", "over",
+        "past", "to", "under", "with", "without"]
+
+    word = random.choice(words)
+    return word
+
+def get_prepositional_phrase(quantity):
+    """Build and return a prepositional phrase composed of three
+    words: a preposition, a determiner, and a noun by calling the
+    get_preposition, get_determiner, and get_noun functions.
+
+    Parameter
+        quantity: an integer that determines if the
+            determiner and nouns are singular or plural.
+    Return: a prepositional phrase.
+    """
+
+    preposition = get_preposition()
+    determiner = get_determiner(quantity)
+    noun = get_noun(quantity)
+
+    phrase = f"{preposition} {determiner} {noun}"
+    return phrase
 
 main()
