@@ -85,6 +85,7 @@ def test_get_verb():
     future_verbs = ["will drink", "will eat", "will grow", "will laugh",
         "will think", "will run", "will sleep", "will talk",
         "will walk", "will write"]
+    # This loop will repeat the statements inside it 6 times.
     for _ in range(6):
         word = get_verb(1, 'future')
 
@@ -93,7 +94,7 @@ def test_get_verb():
         assert word in future_verbs
 
 def test_get_preposition():
-    # Test the singular prepositions.
+    # Test the prepositions.
     prepositions = ["about", "above", "across", "after", "along",
         "around", "at", "before", "behind", "below",
         "beyond", "by", "despite", "except", "for",
@@ -110,6 +111,7 @@ def test_get_preposition():
         assert word in prepositions  
         
 def test_get_prepositional_phrase():
+    # Test the prepositional phrases
     prepositions = ["about", "above", "across", "after", "along",
         "around", "at", "before", "behind", "below",
         "beyond", "by", "despite", "except", "for",
@@ -117,6 +119,8 @@ def test_get_prepositional_phrase():
         "off", "on", "onto", "out", "over",
         "past", "to", "under", "with", "without"]
 
+    # This loop will repeat the statements inside it 6 times,
+    # testing calling the functions to get singular prepisitions
     for _ in range(6):
         preposition = get_preposition()
         determiner = get_determiner(1)
@@ -124,9 +128,15 @@ def test_get_prepositional_phrase():
 
         phrase = f"{preposition} {determiner} {noun}"
 
+        # Split the string into a three elements list
         phrase_list = phrase.split(' ')
+
+        # Verify that the number of words that we get from the string
+        # is equal to three
         assert len(phrase_list) == 3
     
+    # This loop will repeat the statements inside it 6 times,
+    # testing calling the functions to get plural prepositions
     for _ in range(6):
         preposition = get_preposition()
         determiner = get_determiner(2)
@@ -134,29 +144,43 @@ def test_get_prepositional_phrase():
 
         phrase = f"{preposition} {determiner} {noun}"
 
+        # Split the string into a three elements list
         phrase_list = phrase.split(' ')
+
+        # Verify that the number of words that we get from the string
+        # is equal to three
         assert len(phrase_list) == 3
     
+    # This loop will repeat the statements inside it 6 times,
+    # testing calling the functions to get singular functions
     for _ in range(6):
         determiners = ["the", "one"]
         nouns = ["adult", "bird", "boy", "car", "cat",
         "child", "dog", "girl", "man", "woman"]
 
         phrase = get_prepositional_phrase(1)
+        # Split the string into a three elements list
         phrase_list = phrase.split(' ')
 
+        # Check if the word on that index position is actually on
+        # the list that corresponds
         assert phrase_list[0] in prepositions
         assert phrase_list[1] in determiners
         assert phrase_list[2] in nouns
 
+    # This loop will repeat the statements inside it 6 times,
+    # testing calling the functions to get plural functions
     for _ in range(6):
         determiners = ["some", "many"]
         nouns = ["adults", "birds", "boys", "cars", "cats",
         "children", "dogs", "girls", "men", "women"]
 
         phrase = get_prepositional_phrase(2)
+        # Split the string into a three elements list
         phrase_list = phrase.split(' ')
 
+        # Check if the word on that index position is actually on
+        # the list that corresponds
         assert phrase_list[0] in prepositions
         assert phrase_list[1] in determiners
         assert phrase_list[2] in nouns
