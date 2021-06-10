@@ -8,6 +8,28 @@ def main():
 
     # Call the make_periodic_table function and
     # store the periodic table in a variable.
+    table = make_periodic_table()
+
+    # Call the parse_formula function to convert the
+    # chemical formula given by the user to a compound
+    # list that stores element symbols and the quantity
+    # of atoms of each element in the molecule.
+    parsed_formula = parse_formula(formula, table)
+
+    # Call the compute_molar_mass function to compute the
+    # molar mass of the molecule from the compound list.
+    molar_mass = compute_molar_mass(parsed_formula, table)
+
+    # Compute the number of moles of the sample.
+    number_of_moles = grams / molar_mass
+    
+    # # Print the molar mass.
+    print(f"{molar_mass:.5f} grams/mole")
+
+    # # Print the number of moles.
+    print(f"{number_of_moles:.5f} moles")
+
+def make_periodic_table():
     table = {
         "Ac": ["Actinium", 227],
         "Ag": ["Silver", 107.8682],
@@ -129,24 +151,7 @@ def main():
         "Zr": ["Zirconium", 91.224],
     };
 
-    # Call the parse_formula function to convert the
-    # chemical formula given by the user to a compound
-    # list that stores element symbols and the quantity
-    # of atoms of each element in the molecule.
-    parsed_formula = parse_formula(formula, table)
-
-    # Call the compute_molar_mass function to compute the
-    # molar mass of the molecule from the compound list.
-    molar_mass = compute_molar_mass(parsed_formula, table)
-
-    # Compute the number of moles of the sample.
-    number_of_moles = grams / molar_mass
-    
-    # # Print the molar mass.
-    print(f"{molar_mass:.5f} grams/mole")
-
-    # # Print the number of moles.
-    print(f"{number_of_moles:.5f} moles")
+    return table
 
 class FormulaError(ValueError):
     """FormulaError is the type of error that
